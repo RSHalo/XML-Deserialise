@@ -47,6 +47,7 @@ namespace XMLDeserialisation
             Console.WriteLine(department.RoomNumber);
             Console.WriteLine(department.Budget);
 
+            Console.WriteLine();
             Console.WriteLine("Employees:");
 
             foreach (var employee in department.Employees)
