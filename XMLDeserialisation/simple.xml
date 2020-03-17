@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+ <Department>
+   <Name>Sales</Name>
+   <Description>A department that sells things.</Description>
+   <RoomNumber>5</RoomNumber>
+   <Budget>3285.54</Budget>
+   <Employees>
+		<Employee>John</Employee>
+		<Employee>David</Employee>
+   </Employees>
+ </Department>
