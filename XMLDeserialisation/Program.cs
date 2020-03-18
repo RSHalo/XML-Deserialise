@@ -51,7 +51,7 @@ namespace XMLDeserialisation
             Console.WriteLine("Employees:");
 
             foreach (var employee in department.Employees)
-                Console.WriteLine(employee);
+                Console.WriteLine(employee.Name.PadRight(20) + employee.Desk);
         }
     }
 }

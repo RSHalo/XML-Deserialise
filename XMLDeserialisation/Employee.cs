@@ -10,5 +10,6 @@ namespace XMLDeserialisation
     public class Employee
     {
         public string Name { get; set; }
+        public int Desk { get; set; }
     }
 }

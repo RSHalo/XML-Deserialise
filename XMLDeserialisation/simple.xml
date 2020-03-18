@@ -5,7 +5,27 @@
    <RoomNumber>5</RoomNumber>
    <Budget>3285.54</Budget>
    <Employees>
-		<Employee>John</Employee>
-		<Employee>David</Employee>
+		<Employee>
+			<Name>Adam</Name>
+			<Desk>12</Desk>
+		</Employee>
+		<Employee>
+			<Name>Bill</Name>
+			<Desk>38</Desk>
+		</Employee>
+		<Employee>
+			<Name>Chad</Name>
+			<Desk>7</Desk>
+		</Employee>
+		<Employee>
+			<Name>David</Name>
+			<Desk>93</Desk>
+		</Employee>
+		<Employee>
+			<Name>Fred</Name>
+			<Desk>3</Desk>
+		</Employee>
    </Employees>
  </Department>
+ 
+ 

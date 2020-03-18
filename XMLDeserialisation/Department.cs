@@ -14,7 +14,6 @@ namespace XMLDeserialisation
         public int RoomNumber { get; set; }
         public decimal Budget { get; set; }
 
-        [XmlArrayItem("Employee")]
-        public List<string> Employees { get; set; }
+        public List<Employee> Employees { get; set; }
     }
 }
