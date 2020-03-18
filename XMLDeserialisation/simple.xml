@@ -8,14 +8,22 @@
 		<Employee>
 			<Name>Adam</Name>
 			<Desk>12</Desk>
+			<Pets>
+				<Pet>Fluffy</Pet>
+			</Pets>
 		</Employee>
 		<Employee>
 			<Name>Bill</Name>
 			<Desk>38</Desk>
+			<Pets>
+				<Pet>Kitty</Pet>
+				<Pet>Doggy</Pet>
+			</Pets>
 		</Employee>
 		<Employee>
 			<Name>Chad</Name>
 			<Desk>7</Desk>
+			<Pets />
 		</Employee>
 		<Employee>
 			<Name>David</Name>
@@ -24,6 +32,12 @@
 		<Employee>
 			<Name>Fred</Name>
 			<Desk>3</Desk>
+			<Pets>
+				<Pet>Woofy</Pet>
+				<Pet>Muncher</Pet>
+				<Pet>Pippin</Pet>
+				<Pet>Tails</Pet>
+			</Pets>
 		</Employee>
    </Employees>
  </Department>

@@ -17,7 +17,7 @@ namespace XMLDeserialisation
         {
             Initialise();
 
-            DeserializeObject(xmlFilePath);
+            DeserializeFile(xmlFilePath);
 
             Console.ReadKey();
         }
@@ -27,7 +27,7 @@ namespace XMLDeserialisation
             xmlFilePath = ConfigurationManager.AppSettings["XMLFilePath"];
         }
 
-        static void DeserializeObject(string filename)
+        static void DeserializeFile(string filename)
         {
             // Create an instance of the XmlSerializer.
             var serializer = new XmlSerializer(typeof(Department));
@@ -41,7 +41,12 @@ namespace XMLDeserialisation
                 department = (Department)serializer.Deserialize(reader);
             }
 
-            // Write out the properties of the object.
+            OutputDepartment(department);
+        }
+
+        static void OutputDepartment(Department department)
+        {
+            Console.WriteLine("Department:");
             Console.WriteLine(department.Name);
             Console.WriteLine(department.Description);
             Console.WriteLine(department.RoomNumber);
@@ -49,9 +54,19 @@ namespace XMLDeserialisation
 
             Console.WriteLine();
             Console.WriteLine("Employees:");
+            Console.WriteLine();
 
             foreach (var employee in department.Employees)
-                Console.WriteLine(employee.Name.PadRight(20) + employee.Desk);
+            {
+                Console.WriteLine(employee.Name.PadRight(20) + $"Desk { employee.Desk }");
+
+                Console.WriteLine("Pets:");
+
+                foreach (string pet in employee.Pets)
+                    Console.WriteLine(pet);
+
+                Console.WriteLine();
+            }
         }
     }
 }
