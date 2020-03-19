@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace XMLDeserialisation
@@ -17,7 +18,7 @@ namespace XMLDeserialisation
         {
             Initialise();
 
-            DeserializeFile(xmlFilePath);
+            ProcessFile();
 
             Console.ReadKey();
         }
@@ -27,21 +28,52 @@ namespace XMLDeserialisation
             xmlFilePath = ConfigurationManager.AppSettings["XMLFilePath"];
         }
 
-        static void DeserializeFile(string filename)
+        private static void ProcessFile()
         {
-            // Create an instance of the XmlSerializer.
+            using (var streamReader = new StreamReader(xmlFilePath))
+            {
+                using (var xmlReader = XmlReader.Create(streamReader))
+                {
+                    int departmentCount = 0;
+
+                    while (xmlReader.Read())
+                    {
+                        if (xmlReader.NodeType == XmlNodeType.Element && xmlReader.Name == "Department")
+                        {
+                            // Reached a new <Department> element.
+
+                            using (var departmentReader = xmlReader.ReadSubtree())
+                            {
+                                // Create an XML reader that just reads a <Department> element.
+                                // Perform deserialisation for this single <Department> element.
+
+                                var department = DeserializeDepartment(departmentReader);
+
+                                // Write the department to the console.
+                                OutputDepartment(department);
+                            }
+
+                            departmentCount++;
+                        }
+                    }
+
+                    Console.WriteLine($"Department count: { departmentCount }");
+                }
+            }
+        }
+
+        static Department DeserializeDepartment(XmlReader xmlReader)
+        {
+            // We need an instance of the XmlSerializer class to perform deserialisation.
             var serializer = new XmlSerializer(typeof(Department));
 
-            // Declare an object variable of the type to be deserialized.
+            // The object that will be the XML file will be deserialised to.
             Department department;
 
-            using (Stream reader = new FileStream(filename, FileMode.Open))
-            {
-                // Call the Deserialize method to restore the object's state.
-                department = (Department)serializer.Deserialize(reader);
-            }
+            // Call the Deserialize method to 'populate' the object.
+            department = (Department)serializer.Deserialize(xmlReader);
 
-            OutputDepartment(department);
+            return department;
         }
 
         static void OutputDepartment(Department department)
@@ -67,6 +99,8 @@ namespace XMLDeserialisation
 
                 Console.WriteLine();
             }
+
+            Console.WriteLine("--------------------------------------------------------------------------------------------------------------------");
         }
     }
 }
